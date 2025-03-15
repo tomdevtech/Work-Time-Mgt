@@ -1,0 +1,12 @@
+{
+    "Employee": {
+        "EmployeeNo": "",
+        "Surname": "",
+        "LastName": "",
+        "Role": "",
+        "StreetName": "",
+        "ZipCode": "",
+        "City": "",
+        "TotalCountHoursPerMonth": 0
+    }
+}

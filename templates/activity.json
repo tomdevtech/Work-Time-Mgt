@@ -1,0 +1,9 @@
+{
+  "Activity": {
+    "Code": "",
+    "Description": "",
+    "TotalHoursBooked": 0,
+    "TotalHoursAvailable": 0,
+    "IgnoreTotalHoursAvailableCheck": false
+  }
+}

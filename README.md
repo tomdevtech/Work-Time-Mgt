@@ -54,5 +54,8 @@ This project focuses on developing a work time management system that enables co
   }
 }
 ```
+---
+## 📄References
+👾  [Running Powershell Script from Shortcut on Desktop](https://www.tenforums.com/tutorials/97162-powershell-scripting-run-script-shortcut.html)
 
 

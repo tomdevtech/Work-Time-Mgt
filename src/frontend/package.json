@@ -1,0 +1,18 @@
+{
+    "name": "frontend",
+    "version": "1.0.0",
+    "description": "Frontend for the Work Time Management system",
+    "main": "index.js",
+    "author": "Tom.DevTech",
+    "license": "ISC",
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build"
+    },
+    "dependencies": {
+      "react": "^18.0.0",
+      "react-dom": "^18.0.0",
+      "react-scripts": "5.0.1"
+    }
+  }
+  

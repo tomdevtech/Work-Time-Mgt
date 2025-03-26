@@ -1,27 +1,4 @@
-networks:
-  worktime-network:
-    driver: bridge
-
-volumes:
-  worktime-db-data:
-
 services:
-  database-service:
-    image: mysql:latest
-    container_name: worktime-database
-    restart: always
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: worktime_db
-      MYSQL_USER: worktime_user
-      MYSQL_PASSWORD: userpassword
-    volumes:
-      - worktime-db-data:/var/lib/mysql  # Updated volume name
-    networks:
-      - worktime-network  # Use custom network
-
   backend-service:
     image: node:18
     container_name: worktime-backend
@@ -34,11 +11,6 @@ services:
       sh -c "npm install && npm start"
     depends_on:
       - database-service
-    environment:
-      DB_HOST: database-service
-      DB_USER: root
-      DB_PASSWORD: rootpassword
-      DB_NAME: worktime_db
     networks:
       - worktime-network
 
@@ -47,15 +19,16 @@ services:
     container_name: worktime-frontend
     working_dir: /app
     volumes:
-      - ../src/frontend:/app
+      - ../src/frontend:/app  # Ensure the correct path
     ports:
       - "3001:3001"
     command: >
-      sh -c "npm install && npm run build"
+      sh -c "ls -la /app && cat /app/package.json && npm install && npm run build"
     depends_on:
       - backend-service
     networks:
       - worktime-network
+
 
   reverse-proxy:
     image: nginx:latest
@@ -69,3 +42,26 @@ services:
       - ../src/frontend/build:/usr/share/nginx/html:ro
     networks:
       - worktime-network
+
+  database-service:
+    image: mysql:latest
+    container_name: worktime-database
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: worktime_db
+      MYSQL_USER: worktime_user
+      MYSQL_PASSWORD: userpassword
+    volumes:
+      - worktime-db-data:/var/lib/mysql
+    networks:
+      - worktime-network
+
+networks:
+  worktime-network:
+
+
+volumes:
+  worktime-db-data:

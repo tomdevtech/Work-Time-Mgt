@@ -1,18 +1,21 @@
-# 📆 Work Time Management 
+# 📊 Work Time Management System
+
+A full-stack application for managing employee work time and activities.
 
 ## 📄 Project Overview
 This project focuses on developing a work time management system that enables companies to efficiently record, manage, and analyze employee working hours. The system is designed to provide a user-friendly interface to enhance productivity and ensure compliance with legal requirements.
 
----
+## ✨ Features
 
-## 🔧 Features
-- **Time Tracking:** Employees can conveniently clock in and out.
-- **Management:** Managers can view, edit, and approve working hours.
+- 👥 Employee management
+- 📝 Activity management
+- ⏱️ Time tracking
+- 📊 Dashboard with statistics
+- 📱 Responsive design
 
----
+## 🔎 Data Structures
 
-## 🔎 Employee JSON Structure
-
+### Employee JSON Structure
 ```json
 {
   "Employee": {
@@ -28,8 +31,20 @@ This project focuses on developing a work time management system that enables co
 }
 ```
 
-## 🔎 Time Management JSON Structure
+### Activity JSON Structure
+```json
+{
+  "Activity": {
+    "Code": "ACT1001",
+    "Description": "Development Work",
+    "TotalHoursBooked": 120,
+    "TotalHoursAvailable": 160,
+    "IgnoreTotalHoursAvailableCheck": false
+  }
+}
+```
 
+### Time Management JSON Structure
 ```json
 {
   "TimeMgt": {
@@ -43,78 +58,122 @@ This project focuses on developing a work time management system that enables co
 }
 ```
 
-## 🔎 Activity JSON Structure
+## 🛠️ Tech Stack
 
-```json
-{
-  "Activity": {
-    "Code": "ACT1001",
-    "Description": "Development Work",
-    "TotalHoursBooked": 120,
-    "TotalHoursAvailable": 160,
-    "IgnoreTotalHoursAvailableCheck": false
-  }
-}
+### Frontend
+- ⚛️ React
+- 📘 TypeScript
+- 🎨 Material UI
+- 📝 Formik
+- ✅ Yup
+- 🔄 Axios
+- 🛣️ React Router
+
+### Backend
+- 🟢 Node.js
+- 🚂 Express
+- 📘 TypeScript
+- 🐘 PostgreSQL
+- 🔄 Prisma
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- 🟢 Node.js
+- 🐘 PostgreSQL
+- 📦 npm or yarn
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   cd src/frontend
+   npm install
+   cd ../backend
+   npm install
+   ```
+
+3. Set up the database:
+   ```bash
+   cd src/backend
+   npx prisma migrate dev
+   ```
+
+4. Start the development servers:
+   ```bash
+   # Terminal 1
+   cd src/backend
+   npm run dev
+
+   # Terminal 2
+   cd src/frontend
+   npm start
+   ```
+
+## ⚙️ Environment Variables
+
+### Frontend
+- `REACT_APP_API_URL`: API base URL
+  - Development: `http://localhost:3000/api`
+  - Production: `/api`
+
+### Backend
+- `DATABASE_URL`: PostgreSQL connection string
+- `PORT`: Server port (default: 3000)
+
+## 📁 Project Structure
+
+### Frontend
+```
+src/frontend/
+├── src/
+│   ├── api/                 # API client and endpoints
+│   ├── components/          # Reusable components
+│   ├── pages/              # Page components
+│   ├── App.tsx             # Main application component
+│   └── index.tsx           # Entry point
+├── public/                 # Static files
+└── package.json           # Dependencies and scripts
 ```
 
----
+### Backend
+```
+src/backend/
+├── src/
+│   ├── controllers/        # Request handlers
+│   ├── models/            # Database models
+│   ├── routes/            # API routes
+│   ├── services/          # Business logic
+│   └── app.ts             # Main application
+├── prisma/                # Database schema and migrations
+└── package.json          # Dependencies and scripts
+```
 
-# 🖥️ **Running PowerShell Script `start_processes.ps1` via Desktop Shortcut**  
+## 📚 API Documentation
 
-## ✅ **Prerequisites**
-Before you begin, ensure that the following prerequisites are met:  
-1. **Docker** is installed and running on your system. If Docker is not installed, you can download it here: [Docker Official Website](https://www.docker.com/)  
-2. **PowerShell script execution is enabled** (see below).  
+### Employee Management
+- `GET /employees` - Get all employees
+- `GET /employees/:employeeNo` - Get employee by ID
+- `POST /employees` - Create new employee
+- `PATCH /employees/:employeeNo` - Update employee
+- `DELETE /employees/:employeeNo` - Delete employee
 
----
+### Activity Management
+- `GET /activities` - Get all activities
+- `GET /activities/:code` - Get activity by code
+- `POST /activities` - Create new activity
+- `PATCH /activities/:code` - Update activity
+- `DELETE /activities/:code` - Delete activity
 
-## 🚀 **Step 1: Enable PowerShell Script Execution**
-If not already enabled, activate script execution for PowerShell:
-1. Open PowerShell as Administrator.
-2. Run the following command to allow unsigned scripts:
-   ```powershell
-   Set-ExecutionPolicy Unrestricted -Scope CurrentUser
-   ```
-3. Confirm with `Y` and press **Enter**.
+### Time Management
+- `GET /time-management` - Get all time entries
+- `GET /time-management/:lineNo` - Get time entry by ID
+- `POST /time-management` - Create new time entry
+- `PATCH /time-management/:lineNo` - Update time entry
+- `DELETE /time-management/:lineNo` - Delete time entry
 
----
+## 📄 License
 
-## 📂 **Step 2: Store the Script in a Repository**
-Save your `start_processes.ps1` script in a local folder, e.g.:  
-`C:\Users\YourUser\Documents\WorkTimeManagement\start_processes.ps1`
-
----
-
-## 📌 **Step 3: Create a Desktop Shortcut for the Script**
-1. **Right-click on the desktop** → **New** → **Create Shortcut**  
-2. In the field **"Enter the location of the item"**, enter the following command:
-   ```plaintext
-   powershell.exe -ExecutionPolicy Bypass -File "C:\Users\YourUser\Documents\WorkTimeManagement\start_processes.ps1"
-   ```
-3. Click **Next**.  
-4. Give the shortcut a name, e.g., **"WorkTimeManager Start"**.  
-5. Click **Finish**.  
-
----
-
-## 🎨 **Step 4: Customize Shortcut Icon (Optional)**
-1. **Right-click on the shortcut** → **Properties**  
-2. Under the **"Shortcut"** tab, click **"Change Icon"**.  
-3. Choose a suitable icon (e.g., from `shell32.dll`) or use your own `.ico` file.  
-4. Click **OK** → **Apply**.  
-
----
-
-## ▶ **Step 5: Run the Script with the Shortcut**
-Double-click the created shortcut to execute the script.  
-
-If Docker is not running, check the Docker installation and start it manually via the Docker Desktop application.
-
----
-
-With this setup, you can quickly start your `start_processes.ps1` script to initialize processes for your Work Time Management System! 🚀
-
----
-
-## 📄 References
-👾  [Running Powershell Script from Shortcut on Desktop](https://www.tenforums.com/tutorials/97162-powershell-scripting-run-script-shortcut.html)
+MIT
